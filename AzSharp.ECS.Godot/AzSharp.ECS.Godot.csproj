@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <LangVersion>11</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AzSharp.ECS.Shared\AzSharp.ECS.Shared.csproj" />
+    <ProjectReference Include="..\AzSharp\AzSharp.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="GodotSharp">
+      <HintPath>..\AssortedDLL\Godot_v4.1.1\Release\GodotSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="GodotSharpEditor">
+      <HintPath>..\AssortedDLL\Godot_v4.1.1\Release\GodotSharpEditor.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

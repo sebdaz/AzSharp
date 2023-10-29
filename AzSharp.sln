@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33717.318
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AzSharp", "AzSharp\AzSharp.csproj", "{2138CCD0-0C72-4F2A-B010-2144DE0838F3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AzSharp.UnitTests", "AzSharp.UnitTests\AzSharp.UnitTests.csproj", "{A8323F38-3AA3-4806-966C-6D921D6EBD43}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AzSharp.ECS.Shared", "AzSharp.ECS.Shared\AzSharp.ECS.Shared.csproj", "{4198D70C-29BA-4A39-909A-A1E1C7667490}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AzSharp.ECS.Unity", "AzSharp.ECS.Unity\AzSharp.ECS.Unity.csproj", "{BF235A77-09F7-46FA-B4EE-AA371294D3EE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AzSharp.Network", "AzSharp.Network\AzSharp.Network.csproj", "{003F506A-7A3C-4020-999E-6A2F6447691F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AzSharp.ECS.Godot", "AzSharp.ECS.Godot\AzSharp.ECS.Godot.csproj", "{EA92EEA5-555B-4CB8-9E4B-2CA46F31391A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2138CCD0-0C72-4F2A-B010-2144DE0838F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2138CCD0-0C72-4F2A-B010-2144DE0838F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2138CCD0-0C72-4F2A-B010-2144DE0838F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2138CCD0-0C72-4F2A-B010-2144DE0838F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8323F38-3AA3-4806-966C-6D921D6EBD43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8323F38-3AA3-4806-966C-6D921D6EBD43}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8323F38-3AA3-4806-966C-6D921D6EBD43}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8323F38-3AA3-4806-966C-6D921D6EBD43}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4198D70C-29BA-4A39-909A-A1E1C7667490}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4198D70C-29BA-4A39-909A-A1E1C7667490}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4198D70C-29BA-4A39-909A-A1E1C7667490}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4198D70C-29BA-4A39-909A-A1E1C7667490}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF235A77-09F7-46FA-B4EE-AA371294D3EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF235A77-09F7-46FA-B4EE-AA371294D3EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF235A77-09F7-46FA-B4EE-AA371294D3EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF235A77-09F7-46FA-B4EE-AA371294D3EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{003F506A-7A3C-4020-999E-6A2F6447691F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{003F506A-7A3C-4020-999E-6A2F6447691F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{003F506A-7A3C-4020-999E-6A2F6447691F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{003F506A-7A3C-4020-999E-6A2F6447691F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA92EEA5-555B-4CB8-9E4B-2CA46F31391A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA92EEA5-555B-4CB8-9E4B-2CA46F31391A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA92EEA5-555B-4CB8-9E4B-2CA46F31391A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA92EEA5-555B-4CB8-9E4B-2CA46F31391A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C3FA9F64-398F-441E-A965-83F690C68437}
+	EndGlobalSection
+EndGlobal

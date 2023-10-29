@@ -1,0 +1,18 @@
+[
+  {
+    "ID": "TestParent",
+    "Type": "Test",
+    "Data": {
+      "String": "String",
+      "Int": 5
+    }
+  },
+  {
+    "ID": "TestChild",
+    "Parent": "TestParent",
+    "Type": "Test",
+    "Data": {
+      "Int": 150
+    }
+  }
+]
