@@ -66,12 +66,15 @@ public class GameObjectManager : IGameObjectManager
         InitializeEntities(ent_list);
     }
 
-    public uint InstantiatePrefab(string path, uint parent_ent)
+    public uint InstantiatePrefab(string path, uint parent_ent, bool init = true)
     {
         List<uint> ent_list = new();
         GameObject prefab_obj = UnityEngine.Object.Instantiate(Resources.Load<GameObject>(path));
         _InstantiateGameObject(prefab_obj, parent_ent, ent_list);
-        InitializeEntities(ent_list);
+        if (init)
+        {
+            InitializeEntities(ent_list);
+        }
         return GetEntityID(prefab_obj);
     }
     private void InitializeEntities(List<uint> ent_list)
@@ -180,5 +183,13 @@ public class GameObjectManager : IGameObjectManager
             throw new ArgumentException("Prototype didn't instantiate with UCTransform to set parent");
         }
         transform.comp.SetParent(parent_ent, false);
+    }
+
+    public void InstantiatePrefabPrototype(string prefab_path, string proto_id, uint parent_ent)
+    {
+        IEntityManager ent_manager = IoCManager.Resolve<IEntityManager>();
+        IComponentManager comp_manager = IoCManager.Resolve<IComponentManager>();
+        uint ent = InstantiatePrefab(prefab_path, parent_ent, false);
+        ent_manager.CreatePrototype(proto_id, ent, true);
     }
 }

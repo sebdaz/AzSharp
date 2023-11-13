@@ -109,13 +109,15 @@ public sealed class UCTransformSerializer : ITypeSerializer
         {
             throw new ArgumentException("UCTransform null during serialization");
         }
-        GameObject gameobject = comp.GameObject;
+        GameObject? gameobject = comp.gameObject;
+        JsonNode node = new JsonNode(JsonNodeType.DICTIONARY);
         if (gameobject == null)
         {
-            throw new ArgumentException("UCTransform's gameobject was null during serialization");
+            return node;
+            //throw new ArgumentException("UCTransform's gameobject was null during serialization");
         }
         Transform transf = comp.GameObject.transform;
-        JsonNode node = new JsonNode(JsonNodeType.DICTIONARY);
+
         var dict = node.AsDict();
 
         dict["Name"] = JsonSerializer.Serialize<string, ValueTypeSerializer>(gameobject.name);

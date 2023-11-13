@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace AzSharp.Prototype;
 
@@ -57,21 +58,42 @@ public class PrototypeManager : IPrototypeManager
         string[] files = Directory.GetFiles(directory, "*.json", SearchOption.AllDirectories);
         foreach (var file in files)
         {
-            JsonError error = new();
-            JsonNode node = new();
-            node.LoadFile(file, error);
-            if (error.Errored())
-            {
-                InfoFunc.PrintInfo($"Errored during LoadDirectory of Prototypes for file {file}. {error.GetErrorMsg()}", InfoType.ERROR);
-                continue;
-            }
-            if (node.GetNodeType() != JsonNodeType.LIST)
-            {
-                InfoFunc.PrintInfo($"Loaded a non-list node during LoadDirectory of Prototypes for file {file}", InfoType.ERROR);
-                continue;
-            }
-            LoadPrototypes(node);
+            LoadFile(file);
         }
+    }
+    public void LoadString(string text)
+    {
+        JsonError error = new();
+        JsonNode node = new();
+        node.LoadText(text, error);
+        if (error.Errored())
+        {
+            InfoFunc.PrintInfo($"Errored during LoadString of Prototypes for file {text}. {error.GetErrorMsg()}", InfoType.ERROR);
+            return;
+        }
+        if (node.GetNodeType() != JsonNodeType.LIST)
+        {
+            InfoFunc.PrintInfo($"Loaded a non-list node during LoadString of Prototypes for file {text}", InfoType.ERROR);
+            return;
+        }
+        LoadPrototypes(node);
+    }
+    public void LoadFile(string path)
+    {
+        JsonError error = new();
+        JsonNode node = new();
+        node.LoadFile(path, error);
+        if (error.Errored())
+        {
+            InfoFunc.PrintInfo($"Errored during LoadFile of Prototypes for file {path}. {error.GetErrorMsg()}", InfoType.ERROR);
+            return;
+        }
+        if (node.GetNodeType() != JsonNodeType.LIST)
+        {
+            InfoFunc.PrintInfo($"Loaded a non-list node during LoadFile of Prototypes for file {path}", InfoType.ERROR);
+            return;
+        }
+        LoadPrototypes(node);
     }
 
     public void LoadPrototype(JsonNode node)

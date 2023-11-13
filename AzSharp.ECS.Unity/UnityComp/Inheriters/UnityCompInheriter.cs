@@ -66,5 +66,6 @@ public static class UnityCompInheriter
         TryInherit<UCTextMeshProInheriter>(gameobject, entity_id);
         TryInherit<UCTextMeshProUGUIInheriter>(gameobject, entity_id);
         TryInherit<UCTMPInputFieldInheriter>(gameobject, entity_id);
+        TryInherit<UCSpriteInheriter>(gameobject, entity_id);
     }
 }

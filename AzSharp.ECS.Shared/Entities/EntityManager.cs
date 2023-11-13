@@ -107,7 +107,7 @@ public class EntityManager : IEntityManager
         Entity ent = entity_dict[entity_id];
         if (ent.State != EntityState.UNINITIALIZED)
         {
-            InfoFunc.PrintInfo($"Tried to initialize an entity that is not INITIALIZED; ID: {entity_id}, current state {ent.State}", InfoType.ERROR);
+            InfoFunc.PrintInfo($"Tried to initialize an entity that is not UNINITIALIZED; ID: {entity_id}, current state {ent.State}", InfoType.ERROR);
             return;
         }
         ent.State = EntityState.INITIALIZED;

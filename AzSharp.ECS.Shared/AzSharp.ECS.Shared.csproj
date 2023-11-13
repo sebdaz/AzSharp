@@ -15,4 +15,10 @@
     <ProjectReference Include="..\AzSharp\AzSharp.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>..\AssortedDLL\Unity2021.3.14f1\Managed\UnityEngine\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

@@ -16,4 +16,6 @@ public interface IPrototypeManager
     public List<T> GetPrototypes<T>() where T : IPrototype;
     public T GetPrototype<T>(string ID) where T : IPrototype;
     public void RegisterFromAttributes();
+    public void LoadString(string text);
+    public void LoadFile(string path);
 }
