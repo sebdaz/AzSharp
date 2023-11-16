@@ -22,7 +22,7 @@ public class EntityManager : IEntityManager
     private List<uint> entities_to_cleanup = new();
     private Dictionary<string, Type> entProtoDataNameToType = new();
     private Dictionary<uint, string> uninitEntPrototypes = new();
-    private Dictionary<Type, IProtoDataEventRaiser> prototypeDataEventRaisers = new();
+    private Dictionary<Type, IProtoDataApplier> prototypeDataEventRaisers = new();
     public Entity CreateEntity()
     {
         uint id = ent_id_pool.GetNextID();
@@ -132,7 +132,7 @@ public class EntityManager : IEntityManager
             Type proto_data_type = data_pair.Key;
             IEntityPrototypeData proto_data = data_pair.Value;
             // Raise the event to apply this proto data
-            IProtoDataEventRaiser raiser = prototypeDataEventRaisers[proto_data_type];
+            IProtoDataApplier raiser = prototypeDataEventRaisers[proto_data_type];
             raiser.RaiseApplyDataEvent(entity_id, proto_data);
         }
 
@@ -400,7 +400,7 @@ public class EntityManager : IEntityManager
     {
         string name = ent_proto_data_type.Name;
         entProtoDataNameToType[name] = ent_proto_data_type;
-        prototypeDataEventRaisers[ent_proto_data_type] = (IProtoDataEventRaiser)Activator.CreateInstance(event_raiser_type);
+        prototypeDataEventRaisers[ent_proto_data_type] = (IProtoDataApplier)Activator.CreateInstance(event_raiser_type);
     }
 
     public void RegisterFromAttributes()

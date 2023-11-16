@@ -6,7 +6,7 @@ using AzSharp.ECS.Shared.Events;
 
 namespace AzSharp.ECS.Shared.Entities.Prototype;
 
-public sealed class ProtoDataEventRaiser<T> : IProtoDataEventRaiser
+public sealed class ProtoDataEventRaiser<T> : IProtoDataApplier
     where T : IEntityPrototypeData
 {
     public void RaiseApplyDataEvent(uint entity_id, IEntityPrototypeData data)
