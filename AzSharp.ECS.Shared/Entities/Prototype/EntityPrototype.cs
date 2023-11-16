@@ -15,5 +15,5 @@ public class EntityPrototype : IPrototype
     [DataField("Components", typeof(EntityPrototypeComponentsSerializer))]
     public Dictionary<Type, object> Components = new();
     [DataField("Data", typeof(EntityPrototypeDataSerializer))]
-    public Dictionary<Type, IEntityPrototypeData> Data = new();
+    public Dictionary<Type, object> Data = new();
 }

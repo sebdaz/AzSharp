@@ -17,14 +17,14 @@ public sealed class EntityPrototypeDataSerializer : ITypeSerializer
         {
             throw new ArgumentException("JsonNode is not dictionary during EntityPrototypeComponentsSerializer deserialization.");
         }
-        Dictionary<Type, IEntityPrototypeData> data_dictionary;
+        Dictionary<Type, object> data_dictionary;
         if (obj == null)
         {
             data_dictionary = new();
         }
         else
         {
-            data_dictionary = (Dictionary<Type, IEntityPrototypeData>)obj;
+            data_dictionary = (Dictionary<Type, object>)obj;
         }
         IEntityManager ent_manager = IoCManager.Resolve<IEntityManager>();
         foreach (var pair in node.AsDict())
@@ -34,9 +34,9 @@ public sealed class EntityPrototypeDataSerializer : ITypeSerializer
             Type ent_proto_data_type = ent_manager.EntityProtoDataTypeFromName(proto_data_name);
             if (!data_dictionary.ContainsKey(ent_proto_data_type))
             {
-                data_dictionary[ent_proto_data_type] = (IEntityPrototypeData)Activator.CreateInstance(ent_proto_data_type);
+                data_dictionary[ent_proto_data_type] = (object)Activator.CreateInstance(ent_proto_data_type);
             }
-            IEntityPrototypeData proto_data = data_dictionary[ent_proto_data_type];
+            object proto_data = data_dictionary[ent_proto_data_type];
             JsonSerializer.Deserialize(proto_data, proto_data_node, ent_proto_data_type, typeof(ObjectSerializer));
         }
         return data_dictionary;

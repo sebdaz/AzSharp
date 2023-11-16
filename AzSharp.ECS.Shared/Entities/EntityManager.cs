@@ -130,7 +130,7 @@ public class EntityManager : IEntityManager
         foreach (var data_pair in ent_proto.Data)
         {
             Type proto_data_type = data_pair.Key;
-            IEntityPrototypeData proto_data = data_pair.Value;
+            object proto_data = data_pair.Value;
             // Raise the event to apply this proto data
             IProtoDataApplier raiser = prototypeDataEventRaisers[proto_data_type];
             raiser.RaiseApplyDataEvent(entity_id, proto_data);
@@ -139,31 +139,12 @@ public class EntityManager : IEntityManager
         uninitEntPrototypes.Remove(entity_id);
     }
 
-    public Entity CreateEntityFromPrototype(string prototype_id)
+    public Entity CreateEntityFromPrototype(string prototype_id, bool initialize = true)
     {
-        IPrototypeManager proto_manager = IoCManager.Resolve<IPrototypeManager>();
-        IComponentManager comp_manager = IoCManager.Resolve<IComponentManager>();
-        EntityPrototype ent_proto = proto_manager.GetPrototype<EntityPrototype>(prototype_id);
-
-        Entity ent = CreateEntity();
-        foreach (var pair in ent_proto.Components)
-        {
-            Type comp_type = pair.Key;
-            object comp_base = pair.Value;
-
-            JsonNode comp_base_data = JsonSerializer.Serialize(comp_base, comp_type, typeof(ObjectSerializer));
-            object? new_component = JsonSerializer.Deserialize(null, comp_base_data, comp_type, typeof(ObjectSerializer));
-            if (new_component == null)
-            {
-                throw new ArgumentException("Component missing during entity prototype creation");
-            }
-
-            comp_manager.AddComponent(comp_type, new_component, ent.ID);
-        }
-        return ent;
+        return CreatePrototype(prototype_id, Entity.NULL_ENTITY, initialize);
     }
 
-    public uint CreatePrototype(string prototype_id, uint entity_id = uint.MaxValue, bool initialize = true)
+    public Entity CreatePrototype(string prototype_id, uint entity_id = uint.MaxValue, bool initialize = true)
     {
         Entity ent;
         if (entity_id == Entity.NULL_ENTITY)
@@ -201,7 +182,7 @@ public class EntityManager : IEntityManager
             InitializeEntity(ent.ID);
         }
 
-        return ent.ID;
+        return ent;
     }
 
     public void InitializeEntities(List<uint> entities)

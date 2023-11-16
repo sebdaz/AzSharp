@@ -7,7 +7,7 @@ namespace AzSharp.ECS.Shared.Entities;
 
 public interface IEntityManager
 {
-    public Entity CreateEntityFromPrototype(string prototype_id);
+    public Entity CreateEntityFromPrototype(string prototype_id, bool initialize = true);
     public Entity CreateEntity();
     public void DestroyEntity(uint entity_id);
     public Entity GetEntity(uint entity_id);
@@ -16,7 +16,7 @@ public interface IEntityManager
     public void InitializeEntities(List<uint> entities);
     public void PostTick();
     public void CleanupEntities();
-    public uint CreatePrototype(string prototype_id, uint entity_id = Entity.NULL_ENTITY, bool initialize = true);
+    public Entity CreatePrototype(string prototype_id, uint entity_id = Entity.NULL_ENTITY, bool initialize = true);
     public JsonNode SerializeEntity(uint entity_id);
     public JsonNode SerializeEntities(List<uint> entities);
     public JsonNode SerializeAllEntities();
