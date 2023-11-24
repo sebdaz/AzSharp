@@ -131,6 +131,39 @@ public static class UCTransformFunc
         }
         throw new ArgumentException($"Couldn't find a child transform with name {child_name}");
     }
+    public static Component<UCTransform> GetParentTransform(this Component<UCTransform> transform)
+    {
+        IComponentManager comp_manager = IoCManager.Resolve<IComponentManager>();
+        IGameObjectManager go_manager = IoCManager.Resolve<IGameObjectManager>();
+        GameObject parentgo = transform.comp.GameObject.transform.parent.gameObject;
+        return comp_manager.AssumeGetComponent<UCTransform>(go_manager.GetEntityID(parentgo));
+    }
+    public static Component<UCTransform> GetParentRecursive(this Component<UCTransform> transform, int amount)
+    {
+        if (amount == 0)
+        {
+            return transform;
+        }
+        Component<UCTransform> currentTransform = transform;
+        for (int i = 0; i < amount; i++)
+        {
+            currentTransform = currentTransform.GetParentTransform();
+        }
+        return currentTransform;
+    }
+    public static Component<UCTransform> GetChildRecursive(this Component<UCTransform> transform, string[] childNames)
+    {
+        if (childNames.Length == 0)
+        {
+            return transform;
+        }
+        Component<UCTransform> currentTransform = transform;
+        foreach (string name in childNames)
+        {
+            currentTransform = currentTransform.GetChildTransform(name);
+        }
+        return currentTransform;
+    }
     public static void DestroyAllChildren(this UCTransform transform)
     {
         IComponentManager comp_manager = IoCManager.Resolve<IComponentManager>();

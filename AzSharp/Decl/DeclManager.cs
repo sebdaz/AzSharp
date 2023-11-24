@@ -9,8 +9,9 @@ namespace AzSharp.Decl;
 
 public sealed class DeclManager : IDeclManager
 {
-    private Dictionary<Type, Dictionary<string, object>> declToImplMap = new();
+    private Dictionary<Type, Dictionary<string, Decl>> declToImplMap = new();
     public T GetDecl<T>(string tag)
+        where T : Decl
     {
         Type decl_type = typeof(T);
         if (!declToImplMap.ContainsKey(decl_type))
@@ -26,6 +27,7 @@ public sealed class DeclManager : IDeclManager
     }
 
     public List<T> GetDecls<T>()
+        where T : Decl
     {
         Type decl_type = typeof(T);
         if (!declToImplMap.ContainsKey(decl_type))
@@ -47,7 +49,7 @@ public sealed class DeclManager : IDeclManager
         {
             throw new ArgumentException("Tried to register a Decl that is already registered");
         }
-        declToImplMap[decl_type] = new Dictionary<string, object>();
+        declToImplMap[decl_type] = new Dictionary<string, Decl>();
     }
 
     public void RegisterDeclImpl(Type impl_type, Type decl_type, string tag)
@@ -61,7 +63,8 @@ public sealed class DeclManager : IDeclManager
         {
             throw new ArgumentException($"Tried to register a Decl Implementation with a tag that is already registered: {tag}");
         }
-        dict[tag] = Activator.CreateInstance(impl_type);
+        dict[tag] = (Decl)Activator.CreateInstance(impl_type);
+        dict[tag].declTag = tag;
     }
 
     public void RegisterFromAttributes()
