@@ -175,4 +175,24 @@ public static class UCTransformFunc
             ent_manager.DestroyEntity(child_ent);
         }
     }
+    public static bool Active(this Component<UCTransform> transform)
+    {
+        return transform.comp.GameObject.activeSelf;
+    }
+    public static void SetActive(this Component<UCTransform> transform, bool active)
+    {
+        transform.comp.GameObject.SetActive(active);
+    }
+    public static List<Component<UCTransform>> GetChildrenTransforms(this Component<UCTransform> transform)
+    {
+        List<Component<UCTransform>> list = new List<Component<UCTransform>>();
+        IComponentManager comp_manager = IoCManager.Resolve<IComponentManager>();
+        IGameObjectManager go_manager = IoCManager.Resolve<IGameObjectManager>();
+        foreach (Transform child_transform in transform.comp.GameObject.transform)
+        {
+            uint child_ent = go_manager.GetEntityID(child_transform.gameObject);
+            list.Add(comp_manager.AssumeGetComponent<UCTransform>(child_ent));
+        }
+        return list;
+    }
 }
