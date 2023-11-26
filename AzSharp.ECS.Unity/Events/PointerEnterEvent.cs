@@ -5,7 +5,7 @@ namespace AzSharp.ECS.Unity.Events;
 
 public sealed class PointerEnterEvent : Event
 {
-    PointerEventData eventData;
+    public PointerEventData eventData;
     public PointerEnterEvent(PointerEventData eventData)
     {
         this.eventData = eventData;

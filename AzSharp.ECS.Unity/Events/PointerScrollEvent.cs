@@ -5,7 +5,7 @@ namespace AzSharp.ECS.Unity.Events;
 
 public sealed class PointerScrollEvent : Event
 {
-    PointerEventData eventData;
+    public PointerEventData eventData;
     public PointerScrollEvent(PointerEventData eventData)
     {
         this.eventData = eventData;

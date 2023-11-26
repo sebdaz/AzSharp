@@ -5,7 +5,7 @@ namespace AzSharp.ECS.Unity.Events;
 
 public sealed class PointerUpEvent : Event
 {
-    PointerEventData eventData;
+    public PointerEventData eventData;
     public PointerUpEvent(PointerEventData eventData)
     {
         this.eventData = eventData;
