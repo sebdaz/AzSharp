@@ -195,4 +195,8 @@ public static class UCTransformFunc
         }
         return list;
     }
+    public static Vector3 Position(this Component<UCTransform> transform)
+    {
+        return transform.comp.GameObject.transform.position;
+    }
 }
