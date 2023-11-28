@@ -24,8 +24,8 @@ public class UCSpriteSystem : ISystem
     {
         IComponentManager comp_manager = IoCManager.Resolve<IComponentManager>();
         Component<UCTransform> transf = comp_manager.AssumeGetComponent<UCTransform>(comp.entityID);
-        comp.comp.Sprite = transf.comp.GameObject.AddComponent<SpriteRenderer>();
-        comp.comp.Sprite.sprite = Resources.Load<Sprite>(comp.comp.cache.sprite);
+        comp.comp.sprite = transf.comp.GameObject.AddComponent<SpriteRenderer>();
+        comp.comp.sprite.sprite = Resources.Load<Sprite>(comp.comp.cache.sprite);
         comp.comp.cache = null;
     }
 
@@ -43,7 +43,7 @@ public class UCSpriteSystem : ISystem
         IComponentManager comp_manager = IoCManager.Resolve<IComponentManager>();
         Component<UCTransform> transform = comp_manager.AssumeGetComponent<UCTransform>(entity_id);
         GameObject gameobject = transform.comp.GameObject;
-        comp.comp.Sprite = gameobject.AddComponent<SpriteRenderer>();
+        comp.comp.sprite = gameobject.AddComponent<SpriteRenderer>();
     }
 
     private static void DestroyCallback(Component<UCSprite> comp, ComponentDestroy<UCSprite> args, uint entity_id)
@@ -52,7 +52,7 @@ public class UCSpriteSystem : ISystem
         Component<UCTransform> transform = comp_manager.AssumeGetComponent<UCTransform>(entity_id);
         GameObject game_object = transform.comp.GameObject;
         GameObject.Destroy(comp.comp.Sprite);
-        comp.comp.Sprite = null;
+        comp.comp.sprite = null;
     }
 }
 

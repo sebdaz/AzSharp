@@ -12,8 +12,8 @@ public sealed class UCTextMeshProUGUIInheriter : UnityCompInheriter<UCTextMeshPr
 {
     public override bool LoadFromSceneObject(UCTextMeshProUGUI component, GameObject gameobject)
     {
-        component.Text = gameobject.GetComponent<TextMeshProUGUI>();
-        if (component.Text == null)
+        component.text = gameobject.GetComponent<TextMeshProUGUI>();
+        if (component.text == null)
         {
             return false;
         }

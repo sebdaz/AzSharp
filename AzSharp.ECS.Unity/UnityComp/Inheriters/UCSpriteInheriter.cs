@@ -9,8 +9,8 @@ public sealed class UCSpriteInheriter : UnityCompInheriter<UCSprite>
 {
     public override bool LoadFromSceneObject(UCSprite component, GameObject gameobject)
     {
-        component.Sprite = gameobject.GetComponent<SpriteRenderer>();
-        if (component.Sprite == null)
+        component.sprite = gameobject.GetComponent<SpriteRenderer>();
+        if (component.sprite == null)
         {
             return false;
         }

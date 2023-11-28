@@ -26,7 +26,7 @@ public class UCTextMeshProUGUISystem : ISystem
     {
         IComponentManager comp_manager = IoCManager.Resolve<IComponentManager>();
         Component<UCTransform> transf = comp_manager.AssumeGetComponent<UCTransform>(comp.entityID);
-        comp.comp.Text = transf.comp.GameObject.AddComponent<TextMeshProUGUI>();
+        comp.comp.text = transf.comp.GameObject.AddComponent<TextMeshProUGUI>();
         TextMeshProUGUI text = comp.comp.Text;
         UCTextMeshProDataCache? datacache = comp.comp.dataCache;
         if (datacache == null)
@@ -56,7 +56,7 @@ public class UCTextMeshProUGUISystem : ISystem
         IComponentManager comp_manager = IoCManager.Resolve<IComponentManager>();
         Component<UCTransform> transform = comp_manager.AssumeGetComponent<UCTransform>(entity_id);
         GameObject gameobject = transform.comp.GameObject;
-        comp.comp.Text = gameobject.AddComponent<TextMeshProUGUI>();
+        comp.comp.text = gameobject.AddComponent<TextMeshProUGUI>();
     }
 
     private static void DestroyCallback(Component<UCTextMeshProUGUI> comp, ComponentDestroy<UCTextMeshProUGUI> args, uint entity_id)
@@ -65,6 +65,6 @@ public class UCTextMeshProUGUISystem : ISystem
         Component<UCTransform> transform = comp_manager.AssumeGetComponent<UCTransform>(entity_id);
         GameObject game_object = transform.comp.GameObject;
         GameObject.Destroy(comp.comp.Text);
-        comp.comp.Text = null;
+        comp.comp.text = null;
     }
 }

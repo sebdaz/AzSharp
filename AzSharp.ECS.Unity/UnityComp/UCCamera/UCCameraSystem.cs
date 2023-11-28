@@ -23,8 +23,8 @@ public class UCCameraSystem : ISystem
     {
         IComponentManager comp_manager = IoCManager.Resolve<IComponentManager>();
         Component<UCTransform> transf = comp_manager.AssumeGetComponent<UCTransform>(comp.entityID);
-        comp.comp.Camera = transf.comp.GameObject.AddComponent<Camera>();
-        Camera camera = comp.comp.Camera;
+        comp.comp.camera = transf.comp.GameObject.AddComponent<Camera>();
+        Camera camera = comp.comp.camera;
         UCCameraDataCache? cache = comp.comp.dataCache;
         if (cache == null)
         {
@@ -48,14 +48,14 @@ public class UCCameraSystem : ISystem
 
     private static void InitCallback(Component<UCCamera> comp, ComponentInit<UCCamera> args, uint entity_id)
     {
-        if (comp.comp.Camera != null)
+        if (comp.comp.camera != null)
         {
             return;
         }
         IComponentManager comp_manager = IoCManager.Resolve<IComponentManager>();
         Component<UCTransform> transform = comp_manager.AssumeGetComponent<UCTransform>(entity_id);
         GameObject gameobject = transform.comp.GameObject;
-        comp.comp.Camera = gameobject.AddComponent<Camera>();
+        comp.comp.camera = gameobject.AddComponent<Camera>();
     }
 
     private static void DestroyCallback(Component<UCCamera> comp, ComponentDestroy<UCCamera> args, uint entity_id)
@@ -63,7 +63,7 @@ public class UCCameraSystem : ISystem
         IComponentManager comp_manager = IoCManager.Resolve<IComponentManager>();
         Component<UCTransform> transform = comp_manager.AssumeGetComponent<UCTransform>(entity_id);
         GameObject game_object = transform.comp.GameObject;
-        GameObject.Destroy(comp.comp.Camera);
-        comp.comp.Camera = null;
+        GameObject.Destroy(comp.comp.camera);
+        comp.comp.camera = null;
     }
 }

@@ -10,8 +10,8 @@ public sealed class UCCameraInheriter : UnityCompInheriter<UCCamera>
 {
     public override bool LoadFromSceneObject(UCCamera component, GameObject gameobject)
     {
-        component.Camera = gameobject.GetComponent<Camera>();
-        if (component.Camera == null)
+        component.camera = gameobject.GetComponent<Camera>();
+        if (component.camera == null)
         {
             return false;
         }

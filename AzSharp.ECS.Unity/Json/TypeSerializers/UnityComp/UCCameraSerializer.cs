@@ -60,8 +60,8 @@ public sealed class UCCameraSerializer : ITypeSerializer
         JsonNode node = new JsonNode(JsonNodeType.DICTIONARY);
         var dict = node.AsDict();
         UCCamera cast = (UCCamera)obj;
-        JsonSerializer.AssertObject(cast.Camera);
-        Camera camera = cast.Camera;
+        JsonSerializer.AssertObject(cast.camera);
+        Camera camera = cast.camera;
 
         dict["ClearFlags"] = JsonSerializer.Serialize<int, ValueTypeSerializer>((int)camera.clearFlags);
         dict["Background"] = JsonSerializer.Serialize<Color, ColorSerializer>(camera.backgroundColor);

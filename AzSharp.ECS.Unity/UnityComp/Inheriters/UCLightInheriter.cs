@@ -11,8 +11,8 @@ public sealed class UCLightInheriter : UnityCompInheriter<UCLight>
 {
     public override bool LoadFromSceneObject(UCLight component, GameObject gameobject)
     {
-        component.Light = gameobject.GetComponent<Light>();
-        if (component.Light == null)
+        component.light = gameobject.GetComponent<Light>();
+        if (component.light == null)
         {
             return false;
         }

@@ -20,7 +20,7 @@ public sealed class UCImage
         {
             if (image == null)
             {
-                throw new InvalidOperationException("Image is null");
+                throw new InvalidOperationException("Image of UCImage is null");
             }
             return image;
         }

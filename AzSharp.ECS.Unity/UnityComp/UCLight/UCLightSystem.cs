@@ -25,8 +25,8 @@ public class UCLightSystem : ISystem
     {
         IComponentManager comp_manager = IoCManager.Resolve<IComponentManager>();
         Component<UCTransform> transf = comp_manager.AssumeGetComponent<UCTransform>(comp.entityID);
-        comp.comp.Light = transf.comp.GameObject.AddComponent<Light>();
-        Light light = comp.comp.Light;
+        comp.comp.light = transf.comp.GameObject.AddComponent<Light>();
+        Light light = comp.comp.light;
         UCLightDataCache? cache = comp.comp.dataCache;
         if (cache == null)
         {
@@ -48,14 +48,14 @@ public class UCLightSystem : ISystem
 
     private static void InitCallback(Component<UCLight> comp, ComponentInit<UCLight> args, uint entity_id)
     {
-        if (comp.comp.Light != null)
+        if (comp.comp.light != null)
         {
             return;
         }
         IComponentManager comp_manager = IoCManager.Resolve<IComponentManager>();
         Component<UCTransform> transform = comp_manager.AssumeGetComponent<UCTransform>(entity_id);
         GameObject gameobject = transform.comp.GameObject;
-        comp.comp.Light = gameobject.AddComponent<Light>();
+        comp.comp.light = gameobject.AddComponent<Light>();
     }
 
     private static void DestroyCallback(Component<UCLight> comp, ComponentDestroy<UCLight> args, uint entity_id)
@@ -63,7 +63,7 @@ public class UCLightSystem : ISystem
         IComponentManager comp_manager = IoCManager.Resolve<IComponentManager>();
         Component<UCTransform> transform = comp_manager.AssumeGetComponent<UCTransform>(entity_id);
         GameObject game_object = transform.comp.GameObject;
-        GameObject.Destroy(comp.comp.Light);
-        comp.comp.Light = null;
+        GameObject.Destroy(comp.comp.light);
+        comp.comp.light = null;
     }
 }

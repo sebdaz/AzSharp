@@ -57,8 +57,8 @@ public sealed class UCLightSerializer : ITypeSerializer
         var dict = node.AsDict();
 
         UCLight cast = (UCLight)obj;
-        JsonSerializer.AssertObject(cast.Light);
-        Light light = cast.Light;
+        JsonSerializer.AssertObject(cast.light);
+        Light light = cast.light;
 
         dict["Type"] = JsonSerializer.Serialize<int, ValueTypeSerializer>((int)light.type);
         dict["Mode"] = JsonSerializer.Serialize<int, ValueTypeSerializer>((int)light.lightShadowCasterMode);

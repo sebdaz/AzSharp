@@ -12,6 +12,17 @@ namespace AzSharp.ECS.Unity.UnityComp;
 [RegisterComponent(typeof(ComponentArray<UCSprite>), typeof(ComponentEventRaiser<UCSprite>))]
 public sealed class UCSprite
 {
-    public SpriteRenderer? Sprite = null;
+    public SpriteRenderer? sprite = null;
     public UCSpriteDataCache? cache = null;
+    public SpriteRenderer Sprite
+    {
+        get
+        {
+            if (sprite == null)
+            {
+                throw new InvalidOperationException("Sprite of UCSprite is null");
+            }
+            return sprite;
+        }
+    }
 }
