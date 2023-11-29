@@ -24,7 +24,7 @@ public class PrototypeManager : IPrototypeManager
         }
     }
 
-    public IPrototype GetPrototype(Type prototype_type, string ID)
+    public Prototype GetPrototype(Type prototype_type, string ID)
     {
         if (!ProtoDict.ContainsKey(prototype_type))
         {
@@ -38,19 +38,30 @@ public class PrototypeManager : IPrototypeManager
         return array.PrototypeDict[ID];
     }
 
-    public T GetPrototype<T>(string ID) where T : IPrototype
+    public T GetPrototype<T>(string ID) where T : Prototype
     {
         return (T)GetPrototype(typeof(T), ID);
     }
 
-    public List<IPrototype> GetPrototypes(Type prototype_type)
+    public List<Prototype> GetPrototypes(Type prototype_type)
     {
-        throw new NotImplementedException();
+        var array = ProtoDict[prototype_type];
+        List<Prototype> protoList = new List<Prototype>();
+        foreach (var proto in array.PrototypeDict)
+        {
+            protoList.Add(proto.Value);
+        }
+        return protoList;
     }
 
-    public List<T> GetPrototypes<T>() where T : IPrototype
+    public List<T> GetPrototypes<T>() where T : Prototype
     {
-        throw new NotImplementedException();
+        List<T> protoList = new List<T>();
+        foreach (var proto in GetPrototypes(typeof(T)))
+        {
+            protoList.Add((T)proto);
+        }
+        return protoList;
     }
 
     public void LoadDirectory(string directory)

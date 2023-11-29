@@ -10,7 +10,7 @@ namespace AzSharp.ECS.Shared.Entities.Prototype;
 
 [RegisterPrototype("Entity")]
 [JsonSerializable(typeof(ObjectReflectionSerializer))]
-public class EntityPrototype : IPrototype
+public class EntityPrototype : AzSharp.Prototype.Prototype
 {
     [DataField("Components", typeof(EntityPrototypeComponentsSerializer))]
     public Dictionary<Type, object> Components = new();

@@ -11,10 +11,10 @@ public interface IPrototypeManager
     public void LoadPrototype(JsonNode node);
     public void FinalizePrototypes();
     public void RegisterPrototype(Type prototype_type, string tag);
-    public List<IPrototype> GetPrototypes(Type prototype_type);
-    public IPrototype GetPrototype(Type prototype_type, string ID);
-    public List<T> GetPrototypes<T>() where T : IPrototype;
-    public T GetPrototype<T>(string ID) where T : IPrototype;
+    public List<Prototype> GetPrototypes(Type prototype_type);
+    public Prototype GetPrototype(Type prototype_type, string ID);
+    public List<T> GetPrototypes<T>() where T : Prototype;
+    public T GetPrototype<T>(string ID) where T : Prototype;
     public void RegisterFromAttributes();
     public void LoadString(string text);
     public void LoadFile(string path);

@@ -11,7 +11,7 @@ namespace AzSharp.Prototype;
 public class PrototypeArray : IPrototypeArray
 {
     private Type PrototypeType;
-    public Dictionary<string, IPrototype> PrototypeDict = new();
+    public Dictionary<string, Prototype> PrototypeDict = new();
     public Dictionary<string, PrototypeData> ProtoDataDict = new();
     public PrototypeArray(Type prototype)
     {
@@ -35,12 +35,13 @@ public class PrototypeArray : IPrototypeArray
         {
             FinalizePrototype(data.Parent);
         }
-        IPrototype prototype = (IPrototype)Activator.CreateInstance(PrototypeType);
+        Prototype prototype = (Prototype)Activator.CreateInstance(PrototypeType);
         ApplyProtoData(data, prototype);
+        prototype.ID = ID;
 
         PrototypeDict[ID] = prototype;
     }
-    private void ApplyProtoData(PrototypeData data, IPrototype prototype)
+    private void ApplyProtoData(PrototypeData data, Prototype prototype)
     {
         if (data.Parent != string.Empty)
         {
