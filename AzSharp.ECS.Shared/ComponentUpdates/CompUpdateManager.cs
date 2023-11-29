@@ -50,6 +50,10 @@ public class CompUpdateManager : ICompUpdateManager
             List<IComponent> comp_list = comp_manager.GetAllComponents(pair.comp_type);
             foreach (IComponent comp in comp_list)
             {
+                if (comp.State() != ComponentState.INITIALIZED)
+                {
+                    continue;
+                }
                 comp_updater.Update(comp, delta_time);
             }
         }
