@@ -6,6 +6,13 @@ namespace AzSharp.Json.Parsing;
 
 public class JsonNode
 {
+    public static JsonNode SimpleTextLoad(string text)
+    {
+        JsonNode node = new();
+        JsonError error = new();
+        node.LoadText(text, error);
+        return node;
+    }
     private enum ListExpectation
     {
         OPEN_BRACKET,
