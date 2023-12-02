@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 
 namespace AzSharp.Json.Parsing;
@@ -417,11 +418,11 @@ public class JsonNode
         string substring = text.Substring(start_index, index - start_index);
         if (floaty)
         {
-            SetFloat(float.Parse(substring));
+            SetFloat(float.Parse(substring, CultureInfo.InvariantCulture));
         }
         else
         {
-            SetInt(int.Parse(substring));
+            SetInt(int.Parse(substring, CultureInfo.InvariantCulture));
         }
         return index;
     }
@@ -957,7 +958,7 @@ public class JsonNode
                 }
             case JsonNodeType.FLOAT:
                 {
-                    return_string = mFloat.ToString("0.00");
+                    return_string = mFloat.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture);
                     break;
                 }
             case JsonNodeType.BOOL:
