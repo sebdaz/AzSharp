@@ -61,6 +61,7 @@ public class GameObjectManager : IGameObjectManager
         foreach (Transform child_transform in prefab_obj.transform)
         {
             GameObject child_gameobject = UnityEngine.Object.Instantiate(child_transform.gameObject);
+            child_gameobject.name = child_gameobject.name.Replace("(Clone)", "");
             _InstantiateGameObject(child_gameobject, parent_ent, ent_list);
         }
         InitializeEntities(ent_list);
@@ -70,6 +71,7 @@ public class GameObjectManager : IGameObjectManager
     {
         List<uint> ent_list = new();
         GameObject prefab_obj = UnityEngine.Object.Instantiate(Resources.Load<GameObject>(path));
+        prefab_obj.name = prefab_obj.name.Replace("(Clone)", "");
         _InstantiateGameObject(prefab_obj, parent_ent, ent_list);
         if (init)
         {

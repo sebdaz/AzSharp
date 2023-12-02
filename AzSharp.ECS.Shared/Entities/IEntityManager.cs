@@ -1,4 +1,5 @@
 ﻿using AzSharp.Json.Parsing;
+using AzSharp.Utils.IDPool;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -25,4 +26,6 @@ public interface IEntityManager
     public void RegisterEntityProtoData(Type ent_proto_data_type, Type event_raiser_type);
     public void RegisterFromAttributes();
     public Type EntityProtoDataTypeFromName(string ent_proto_name);
+    public IDHandle GetEntityHandle(uint ent);
+    public bool ValidEntityHandle(IDHandle handle);
 }

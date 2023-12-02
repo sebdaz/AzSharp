@@ -32,8 +32,10 @@ public static class UCTransformFunc
     }
     public static void DestroyGameObject(this UCTransform transform)
     {
+        GameObject go = transform.GameObject;
+        go.transform.SetParent(null);
         IGameObjectManager gomanager = IoCManager.Resolve<IGameObjectManager>();
-        gomanager.DestroyGameObject(transform.GameObject);
+        gomanager.DestroyGameObject(go);
         transform.gameObject = null;
     }
     public static uint GetParentEntityID(this UCTransform transform)

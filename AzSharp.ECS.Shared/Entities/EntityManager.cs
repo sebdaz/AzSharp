@@ -18,7 +18,7 @@ namespace AzSharp.ECS.Shared.Entities;
 public class EntityManager : IEntityManager
 {
     private Dictionary<uint, Entity> entity_dict = new();
-    private IDPool ent_id_pool = new();
+    private IDPoolGenerational ent_id_pool = new();
     private List<uint> entities_to_cleanup = new();
     private Dictionary<string, Type> entProtoDataNameToType = new();
     private Dictionary<uint, string> uninitEntPrototypes = new();
@@ -400,5 +400,19 @@ public class EntityManager : IEntityManager
             throw new ArgumentException($"Cant find a matching type for ent proto data name: {ent_proto_name}");
         }
         return entProtoDataNameToType[ent_proto_name];
+    }
+
+    public IDHandle GetEntityHandle(uint ent)
+    {
+        return ent_id_pool.GetHandle(ent);
+    }
+
+    public bool ValidEntityHandle(IDHandle handle)
+    {
+        if (handle.ID == Entity.NULL_ENTITY)
+        {
+            return false;
+        }
+        return ent_id_pool.ValidHandle(handle);
     }
 }
