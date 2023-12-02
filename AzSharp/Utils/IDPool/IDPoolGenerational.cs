@@ -13,6 +13,34 @@ public struct IDHandle
         this.ID = ID;
         this.generation = generation;
     }
+
+    public override bool Equals(object? obj)
+    {
+        return obj is IDHandle handle &&
+               ID == handle.ID &&
+               generation == handle.generation;
+    }
+
+    public override int GetHashCode()
+    {
+        int hashCode = -1193933033;
+        hashCode = hashCode * -1521134295 + ID.GetHashCode();
+        hashCode = hashCode * -1521134295 + generation.GetHashCode();
+        return hashCode;
+    }
+
+    public static bool operator ==(IDHandle left, IDHandle right)
+    {
+        if (left.ID == right.ID && left.generation == right.generation)
+        {
+            return true;
+        }
+        return false;
+    }
+    public static bool operator !=(IDHandle left, IDHandle right)
+    {
+        return !(left == right);
+    }
 }
 
 public sealed class IDPoolGenerational
