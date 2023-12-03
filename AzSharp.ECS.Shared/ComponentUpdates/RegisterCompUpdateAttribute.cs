@@ -6,8 +6,10 @@ namespace AzSharp.ECS.Shared.ComponentUpdates;
 public sealed class RegisterCompUpdateAttribute : Attribute
 {
     public Type CompType { get; }
-    public RegisterCompUpdateAttribute(Type compType)
+    public int Priority { get; }
+    public RegisterCompUpdateAttribute(Type compType, int priority = 0)
     {
         CompType = compType;
+        Priority = priority;
     }
 }
