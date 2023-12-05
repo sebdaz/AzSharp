@@ -24,7 +24,7 @@ public class PrototypeManager : IPrototypeManager
         }
     }
 
-    public Prototype GetPrototype(Type prototype_type, string ID)
+    public Prototype AssumeGetPrototype(Type prototype_type, string ID)
     {
         if (!ProtoDict.ContainsKey(prototype_type))
         {
@@ -37,10 +37,27 @@ public class PrototypeManager : IPrototypeManager
         }
         return array.PrototypeDict[ID];
     }
-
-    public T GetPrototype<T>(string ID) where T : Prototype
+    public Prototype? GetPrototype(Type prototype_type, string ID)
     {
-        return (T)GetPrototype(typeof(T), ID);
+        if (!ProtoDict.ContainsKey(prototype_type))
+        {
+            throw new ArgumentException($"Tried to get a non existing prototype type: {prototype_type}");
+        }
+        var array = ProtoDict[prototype_type];
+        if (!array.PrototypeDict.ContainsKey(ID))
+        {
+            return null;
+        }
+        return array.PrototypeDict[ID];
+    }
+    public T? GetPrototype<T>(string ID) where T : Prototype
+    {
+        return (T?)GetPrototype(typeof(T), ID);
+    }
+
+    public T AssumeGetPrototype<T>(string ID) where T : Prototype
+    {
+        return (T)AssumeGetPrototype(typeof(T), ID);
     }
 
     public List<Prototype> GetPrototypes(Type prototype_type)

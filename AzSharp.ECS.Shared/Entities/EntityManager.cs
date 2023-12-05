@@ -125,7 +125,7 @@ public class EntityManager : IEntityManager
         }
         string proto_name = uninitEntPrototypes[entity_id];
         IPrototypeManager proto_manager = IoCManager.Resolve<IPrototypeManager>();
-        EntityPrototype ent_proto = proto_manager.GetPrototype<EntityPrototype>(proto_name);
+        EntityPrototype ent_proto = proto_manager.AssumeGetPrototype<EntityPrototype>(proto_name);
 
         foreach (var data_pair in ent_proto.Data)
         {
@@ -158,7 +158,7 @@ public class EntityManager : IEntityManager
 
         IPrototypeManager proto_manager = IoCManager.Resolve<IPrototypeManager>();
         IComponentManager comp_manager = IoCManager.Resolve<IComponentManager>();
-        EntityPrototype ent_proto = proto_manager.GetPrototype<EntityPrototype>(prototype_id);
+        EntityPrototype ent_proto = proto_manager.AssumeGetPrototype<EntityPrototype>(prototype_id);
 
         foreach (var pair in ent_proto.Components)
         {
@@ -414,5 +414,15 @@ public class EntityManager : IEntityManager
             return false;
         }
         return ent_id_pool.ValidHandle(handle);
+    }
+
+    public bool DestroyEntityViaHandle(IDHandle handle)
+    {
+        if (ValidEntityHandle(handle))
+        {
+            DestroyEntity(handle.ID);
+            return true;
+        }
+        return false;
     }
 }

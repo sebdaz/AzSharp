@@ -13,6 +13,11 @@ public struct IDHandle
         this.ID = ID;
         this.generation = generation;
     }
+    public IDHandle()
+    {
+        ID = uint.MaxValue;
+        generation = uint.MaxValue;
+    }
 
     public override bool Equals(object? obj)
     {

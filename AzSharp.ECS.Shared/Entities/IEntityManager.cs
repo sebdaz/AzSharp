@@ -28,4 +28,5 @@ public interface IEntityManager
     public Type EntityProtoDataTypeFromName(string ent_proto_name);
     public IDHandle GetEntityHandle(uint ent);
     public bool ValidEntityHandle(IDHandle handle);
+    public bool DestroyEntityViaHandle(IDHandle handle);
 }

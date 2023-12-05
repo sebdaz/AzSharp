@@ -201,4 +201,13 @@ public static class UCTransformFunc
     {
         return transform.comp.GameObject.transform.position;
     }
+    public static void SetPosition(this Component<UCTransform> transform, Vector3 position)
+    {
+        transform.comp.GameObject.transform.position = position;
+    }
+    public static void SetZ(this Component<UCTransform> transform, float z)
+    {
+        Vector3 pos = transform.Position();
+        transform.SetPosition(new Vector3(pos.x, pos.y, z));
+    }
 }
