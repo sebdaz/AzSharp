@@ -6,7 +6,7 @@ using System.Text;
 
 namespace AzSharp.Json.Serialization.TypeSerializers;
 
-public class ListSerializer<TObject, TSerializer> : ITypeSerializer
+public class ArraySerializer<TObject, TSerializer> : ITypeSerializer
     where TSerializer : ITypeSerializer
 {
     public object? Deserialize(JsonNode node, object? obj, Type type, int version)
@@ -21,16 +21,16 @@ public class ListSerializer<TObject, TSerializer> : ITypeSerializer
             TObject listobj = JsonSerializer.Deserialize<TObject, TSerializer>(null, item)!;
             cast.Add(listobj);
         }
-        return obj;
+        return cast.ToArray();
     }
 
     public JsonNode Serialize(object obj, Type type)
     {
         JsonNode node = new JsonNode(JsonNodeType.LIST);
-        IEnumerable enumerable_obj = (IEnumerable)obj;
+        TObject[] enumerable_obj = (TObject[])obj;
         foreach (var item in enumerable_obj)
         {
-            node.AsList().Add(JsonSerializer.Serialize(item, typeof(TObject), typeof(TSerializer)));
+            node.AsList().Add(JsonSerializer.Serialize(item!, typeof(TObject), typeof(TSerializer)));
         }
         return node;
     }

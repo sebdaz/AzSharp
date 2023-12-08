@@ -6,6 +6,7 @@ namespace AzSharp.Utils.IDPool;
 
 public struct IDHandle
 {
+    public const uint NULL = uint.MaxValue;
     public uint ID;
     public uint generation;
     public IDHandle(uint ID, uint generation)

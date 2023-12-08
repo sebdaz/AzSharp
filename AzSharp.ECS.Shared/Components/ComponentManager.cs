@@ -412,7 +412,7 @@ public class ComponentManager : IComponentManager
         Component<T>? comp = GetComponent<T>(entity_id);
         if (comp == null)
         {
-            throw new InvalidOperationException("Tried to assume get a non existing component");
+            throw new InvalidOperationException($"Tried to assume get a non existing component {typeof(T)}");
         }
         return comp;
     }
@@ -432,7 +432,7 @@ public class ComponentManager : IComponentManager
         Component<T>? comp = GetFirstComponent<T>();
         if (comp == null)
         {
-            throw new ArgumentException("Tried to assume get first component which didn't exit");
+            throw new ArgumentException($"Tried to assume get first component which didn't exist {typeof(T)}");
         }
         return comp;
     }
